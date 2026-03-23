@@ -1,0 +1,11 @@
+import pandas as pd
+
+def carregar_excel(path):
+    df = pd.read_excel(path)
+
+    if "setor" not in df.columns or "tipo" not in df.columns:
+        raise Exception("Excel deve ter colunas: setor, tipo")
+
+    df["tipo"] = df["tipo"].str.lower().str.strip()
+
+    return df.to_dict(orient="records")
