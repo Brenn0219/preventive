@@ -1,6 +1,6 @@
 import pandas as pd
 
-def carregar_excel(path):
+def load_excel(path):
     df = pd.read_excel(path)
 
     if "setor" not in df.columns or "tipo" not in df.columns:
