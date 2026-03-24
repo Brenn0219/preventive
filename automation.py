@@ -1,14 +1,14 @@
-from config import settings
-from service.logger import get_logger
-from service.playwright import start_browser
-from service.preventive import create_preventive
+from script.config import settings
+from script.service.logger import get_logger
+from script.service.playwright import start_browser
+from script.service.preventive import create_preventive
 from db.db import Database
-from repository.sectors import SectorsReadRepository
+from script.repository.sectors import SectorsReadRepository
 
 logger = get_logger()
 
 def main():
-    logger.info("Starting automation")
+    logger.info("Iniciando Automacao")
 
     db = Database()
     db.initialize()
@@ -21,7 +21,7 @@ def main():
 
     page.goto(settings.URL)
 
-    logger.info("Manual login required...")
+    logger.info("Login Manual...")
     page.wait_for_timeout(30000)
 
     for item in data:
@@ -31,7 +31,7 @@ def main():
             logger.error(f"Erro ao criar preventiva para {item['setor']}: {e}")
             continue
 
-    logger.info("Automation finished")
+    logger.info("Automacao Finalizada")
 
     browser.close()
     playwright.stop()

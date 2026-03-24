@@ -1,4 +1,14 @@
 import logging
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+LOG_DIR = os.path.join(BASE_DIR, "..", "..", "log")
+LOG_DIR = os.path.abspath(LOG_DIR)
+
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOG_PATH = os.path.join(LOG_DIR, "log.log")
 
 def get_logger():
     logger = logging.getLogger("preventiva")
@@ -11,7 +21,7 @@ def get_logger():
         datefmt="%d-%m-%Y %H:%M:%S"
     )
 
-    file_handler = logging.FileHandler("log.log", encoding="utf-8")
+    file_handler = logging.FileHandler(LOG_PATH, encoding="utf-8")
     file_handler.setFormatter(formatter)
 
     console_handler = logging.StreamHandler()

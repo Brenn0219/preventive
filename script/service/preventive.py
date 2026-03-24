@@ -1,5 +1,5 @@
 from time import sleep
-from config import settings
+from script.config import settings
 
 def get_main_frame(page):
     page.wait_for_selector("iframe[name='gsft_main']", timeout=60000)
