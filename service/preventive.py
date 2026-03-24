@@ -59,6 +59,6 @@ def create_preventive(page, item: dict, logger):
         "#u_tarefas_rotineiras_de_fieldservice\\.description"
     ).fill(settings.DESCRIPTION[request_type])
 
-    # frame.locator("#sysverb_insert_bottom").click()
+    frame.locator("#sysverb_insert_bottom").click()
     
     page.wait_for_load_state("networkidle")
