@@ -1,15 +1,21 @@
 from config import settings
 from service.logger import get_logger
 from service.playwright import start_browser
-from service.excel_reader import load_excel
 from service.preventive import create_preventive
+from db.db import Database
+from repository.sectors import SectorsReadRepository
 
 logger = get_logger()
 
 def main():
     logger.info("Starting automation")
 
-    data = load_excel(settings.EXCEL_PATH)
+    db = Database()
+    db.initialize()
+
+    sectors_repo = SectorsReadRepository(db)
+
+    data = sectors_repo.get_all()
 
     playwright, browser, page = start_browser()
 
